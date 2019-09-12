@@ -124,6 +124,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "test-angular-ngrx-rxjs"
+    }
+  },
+  "defaultProject": "test-angular-ngrx-rxjs",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
