@@ -10,6 +10,7 @@ import { Input2Component } from './page/keep-alive/input2/input2.component';
 import { Input3Component } from './page/keep-alive/input3/input3.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromExStore from './store/ex/reducers';
+import { MainComponent } from './page/main/main.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import * as fromExStore from './store/ex/reducers';
     KeepAliveComponent,
     Input1Component,
     Input2Component,
-    Input3Component
+    Input3Component,
+    MainComponent
   ],
   imports: [
     BrowserModule,

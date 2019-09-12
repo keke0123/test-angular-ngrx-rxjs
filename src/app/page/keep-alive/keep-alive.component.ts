@@ -9,12 +9,18 @@ import {Observable} from 'rxjs';
 })
 export class KeepAliveComponent implements OnInit {
 
+  public tabArray: Array<string> = [];
+
   constructor(
     router: Router,
   ) {
   }
 
   ngOnInit() {
+    this.tabArray.push('input1');
+    this.tabArray.push('input2');
+
+    console.log(this.tabArray);
   }
 
   changeTabs(tab) {

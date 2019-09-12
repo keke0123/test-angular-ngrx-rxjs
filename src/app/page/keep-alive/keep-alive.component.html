@@ -1,6 +1,18 @@
-<p>keep-alive works!</p>
-<button routerLink="./input1" (click)="changeTabs('input1')">input1</button>
-<button routerLink="./input2" (click)="changeTabs('input2')">input2</button>
-<button routerLink="./input3" (click)="changeTabs('input3')">input3</button>
-<router-outlet></router-outlet>
+<div class="container">
+  <p>keep-alive works!</p>
+  <div class="button-box">
+    <button routerLink="./input1" (click)="changeTabs('input1')">input1</button>
+    <button routerLink="./input2" (click)="changeTabs('input2')">input2</button>
+    <button routerLink="./input3" (click)="changeTabs('input3')">input3</button>
+  </div>
+  <div class="tab-container">
+    <div class="tab-box">
+      <div class="tab" *ngFor="let item of tabArray">{{ item }}</div>
+    </div>
+    <div class="router-box">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
 

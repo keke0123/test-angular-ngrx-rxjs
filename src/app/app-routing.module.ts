@@ -5,6 +5,7 @@ import {KeepAliveComponent} from './page/keep-alive/keep-alive.component';
 import {Input1Component} from './page/keep-alive/input1/input1.component';
 import {Input2Component} from './page/keep-alive/input2/input2.component';
 import {Input3Component} from './page/keep-alive/input3/input3.component';
+import {MainComponent} from './page/main/main.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
         component: Input3Component,
       }
     ]
+  },
+  {
+    path: 'main',
+    component: MainComponent,
   }
 ];
 

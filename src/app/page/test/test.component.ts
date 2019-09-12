@@ -19,16 +19,19 @@ export class TestComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.store.dispatch(new authActions.LoadAuths());
+    // this.store.dispatch(new authActions.LoadAuths());
+    this.store.dispatch(new authActions.SetAuths('hello'));
     console.log(new authActions.LoadAuths());
-    this.auth$ = this.store.pipe(select(fromExStore.exStoreFeatureKey, 'auth'));
-
-
+    this.auth$ = this.store.pipe(select(fromExStore.exStoreFeatureKey, 'auth', 'userName'));
     // 아래와 같이 꺼내오면 foreach 로 한번 더 꺼내야된다.
     // this.store$ = this.store.pipe(select(fromExStore.exStoreFeatureKey));
     // this.store$.forEach((x) => {
     //   console.log(x);
     // });
+  }
+
+  setName(name) {
+    this.store.dispatch(new authActions.SetAuths(name));
   }
 
 }

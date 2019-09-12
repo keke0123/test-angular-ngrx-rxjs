@@ -1,8 +1,8 @@
 <div class="container">
   <p>test works!</p>
   <div class="button-box">
-    <button>hello</button>
-    <button>world</button>
+    <button (click)="setName('hello')">hello</button>
+    <button (click)="setName('world')">world</button>
   </div>
   <p>{{ auth$ | async }}</p>
 </div>
