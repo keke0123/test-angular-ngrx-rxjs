@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {Observable} from 'rxjs';
+import { Observable, fromEvent } from 'rxjs';
 
 @Component({
   selector: 'app-keep-alive',
@@ -10,10 +10,14 @@ import {Observable} from 'rxjs';
 export class KeepAliveComponent implements OnInit {
 
   public tabArray: Array<string> = [];
+  public scopeUrl$: any;
 
   constructor(
-    router: Router,
+    private router: Router,
   ) {
+    this.scopeUrl$ = fromEvent(window, 'hashchange').subscribe(() => {
+      console.log('url changed');
+    });
   }
 
   ngOnInit() {

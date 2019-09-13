@@ -11,6 +11,7 @@ import { Input3Component } from './page/keep-alive/input3/input3.component';
 import { StoreModule } from '@ngrx/store';
 import * as fromExStore from './store/ex/reducers';
 import { MainComponent } from './page/main/main.component';
+import * as fromTabStore from './store/tab/reducers';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { MainComponent } from './page/main/main.component';
     AppRoutingModule,
     StoreModule.forRoot({}), // root 는 하나 들어가야 에러가 안남, 아님 forfeature 대신 root 로 선언
     StoreModule.forFeature(fromExStore.exStoreFeatureKey, fromExStore.reducers, { metaReducers: fromExStore.metaReducers }),
+    StoreModule.forFeature(fromTabStore.tabStoreFeatureKey, fromTabStore.reducers, { metaReducers: fromTabStore.metaReducers }),
   ],
   providers: [],
   bootstrap: [AppComponent]
