@@ -9,7 +9,7 @@ export interface State {
 }
 
 export const initialState: State = {
-  activeTab: [],
+  activeTab: ['input1', 'input2'],
   formData: {}
 };
 
@@ -19,4 +19,8 @@ export function reducer(state = initialState, action: Action): State {
     default:
       return state;
   }
+}
+
+function tabActive(url) {
+
 }
