@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import * as tabActions from './tab.actions';
 
 
 export const tabFeatureKey = 'tab';
@@ -13,14 +14,19 @@ export const initialState: State = {
   formData: {}
 };
 
-export function reducer(state = initialState, action: Action): State {
+export function reducer(state = initialState, action: tabActions.TabActions): State {
   switch (action.type) {
-
+    case tabActions.TabActionTypes.LoadTabs:
+      return tabActive(state, action);
     default:
       return state;
   }
 }
 
-function tabActive(url) {
-
+function tabActive(state: State, action: tabActions.LoadTabs): State {
+  let array = ['input1'];
+  return {
+    ...state,
+    activeTab: array,
+  }
 }

@@ -18,6 +18,7 @@ export class KeepAliveComponent implements OnInit {
   public scopeUrl$;
   // public scopeUrl$: Subscriber<any>;
   public url: string;
+  // public tab$: Observable<any>;
   public activeTab;
 
   constructor(
@@ -35,8 +36,15 @@ export class KeepAliveComponent implements OnInit {
     // css test
 
     // activeTab from store
-    this.activeTab = this.store.select(fromTabStore.tabStoreFeatureKey, 'tab');
-    console.log('active tab', this.activeTab);
+    // this.activeTab = this.store.select(fromTabStore.tabStoreFeatureKey, 'tab');
+    // console.log('active tab', this.activeTab);
+    // 아래처럼 구독 해놓고 계속 subscribe 로 연결시켜주면 store 의 값이 업데이트될때마다 실행되는듯 하다.
+    let test = this.store.select(fromTabStore.tabStoreFeatureKey, 'tab')
+      .subscribe((val) => {
+        console.log('val', val);
+      });
+    this.store.dispatch(new tabActions.LoadTabs());
+    // activeTab from store
 
     // url
     this.scopeUrl$ = this.router.events.pipe(
