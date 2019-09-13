@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
-import { Observable, fromEvent } from 'rxjs';
+import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {Observable, fromEvent, Subscriber} from 'rxjs';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-keep-alive',
@@ -10,14 +11,14 @@ import { Observable, fromEvent } from 'rxjs';
 export class KeepAliveComponent implements OnInit {
 
   public tabArray: Array<string> = [];
-  public scopeUrl$: any;
+  public scopeUrl$;
+  // public scopeUrl$: Subscriber<any>;
+  public url: string;
 
   constructor(
     private router: Router,
   ) {
-    this.scopeUrl$ = fromEvent(window, 'hashchange').subscribe(() => {
-      console.log('url changed');
-    });
+
   }
 
   ngOnInit() {
@@ -25,6 +26,24 @@ export class KeepAliveComponent implements OnInit {
     this.tabArray.push('input2');
 
     console.log(this.tabArray);
+
+    // url
+    this.scopeUrl$ = this.router.events.pipe(
+      filter((val) => {
+        return val instanceof NavigationEnd;
+      })
+    )
+      .subscribe((val) => {
+        console.log(val['url']);
+      });
+    // url
+    // console.log(typeof this.scopeUrl$);
+    console.log(this.scopeUrl$);
+  }
+
+  ngOnDestroy() {
+    console.log('destroy');
+    this.scopeUrl$.unsubscribe();
   }
 
   changeTabs(tab) {
