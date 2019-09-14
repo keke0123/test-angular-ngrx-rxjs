@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Component, OnInit, QueryList, ViewChildren} from '@angular/core';
+import {Store} from '@ngrx/store';
+import * as fromTabStore from '../../../store/tab/reducers';
 
 @Component({
   selector: 'app-input1',
@@ -8,11 +9,16 @@ import {Router} from '@angular/router';
 })
 export class Input1Component implements OnInit {
 
+  @ViewChildren('input') input;
+
   constructor(
-    private router: Router
+    private store: Store<fromTabStore.State>
   ) { }
 
   ngOnInit() {
+    console.log('test', this.input);
   }
 
 }
+
+

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {NavigationEnd, NavigationStart, Router} from '@angular/router';
+import {Component, OnInit, ViewChild, ViewChildren} from '@angular/core';
+import {NavigationEnd, NavigationStart, Router, RouterOutlet} from '@angular/router';
 import {Observable, fromEvent, Subscriber, Subject} from 'rxjs';
 import {filter, map, takeUntil} from 'rxjs/operators';
 import {Store} from '@ngrx/store';
@@ -13,6 +13,9 @@ import * as tabActions from '../../store/tab/tab.actions';
   styleUrls: ['./keep-alive.component.scss']
 })
 export class KeepAliveComponent implements OnInit {
+
+  // 이런식으로 받으면 timing 이슈를 해결하기가 힘들다
+  // @ViewChildren(RouterOutlet) outlet;
 
   public urlNow: string = 'input1';
   public tabArray: Array<string> = [];
@@ -69,7 +72,22 @@ export class KeepAliveComponent implements OnInit {
   }
 
   changeTabs(tab) {
-    console.log(tab);
+    console.log('tab', tab);
+    // router outlet 관련
+    // console.log(this.outlet);
+    // this.outlet.forEach((val) => {
+    //   console.log(val.component);
+    //   if(val.component['input']){
+    //     val.component['input'].forEach((v) => {
+    //       console.log(v);
+    //     });
+    //   }
+    // });
+  }
+
+  outletInit(component) {
+    console.log('router outlet init');
+    console.log(component);
   }
 
 }
