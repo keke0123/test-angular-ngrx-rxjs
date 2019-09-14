@@ -14,13 +14,8 @@ import * as tabActions from '../../store/tab/tab.actions';
 })
 export class KeepAliveComponent implements OnInit {
 
+  public urlNow: string = 'input1';
   public tabArray: Array<string> = [];
-  public scopeUrl$;
-  // public scopeUrl$: Subscriber<any>;
-  public url: string;
-  // public tab$: Observable<any>;
-  public activeTab;
-  public tabSubscriber$;
   // destroy
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -32,15 +27,7 @@ export class KeepAliveComponent implements OnInit {
   }
 
   ngOnInit() {
-    // css test
-    this.tabArray.push('input1');
-    this.tabArray.push('input2');
-    // console.log(this.tabArray);
-    // css test
-
     // activeTab from store
-    // this.activeTab = this.store.select(fromTabStore.tabStoreFeatureKey, 'tab');
-    // console.log('active tab', this.activeTab);
     // 아래처럼 구독 해놓고 계속 subscribe 로 연결시켜주면 store 의 값이 업데이트될때마다 실행되는듯 하다.
     this.store.select(fromTabStore.tabStoreFeatureKey, 'tab', 'activeTab')
       .pipe(
@@ -48,30 +35,34 @@ export class KeepAliveComponent implements OnInit {
       )
       .subscribe((val) => {
         console.log('val', val);
+        this.tabArray = val;
       });
-    // this.store.dispatch(new tabActions.LoadTabs());
     // activeTab from store
 
     // url
     this.router.events.pipe(
+      takeUntil(this.destroy$),
       filter((val) => {
         return val instanceof NavigationEnd;
       })
-      ,takeUntil(this.destroy$)
     )
       .subscribe((val) => {
-        console.log(val['url']);
+        let urlArray = val['url'].split('/');
+        let url = urlArray[urlArray.length - 1];
+        console.log('url', url);
+        if(this.tabArray.indexOf(url) >= 0) {
+          console.log('is be');
+        } else {
+          console.log('is not be');
+          this.store.dispatch(new tabActions.SetTabs(url));
+        }
       });
     // url
-
-    // console.log(typeof this.scopeUrl$);
-    console.log(this.scopeUrl$);
   }
 
   ngOnDestroy() {
     console.log('destroy');
-    // this.scopeUrl$.unsubscribe();
-    // this.tabSubscriber$.unsubscribe();
+    this.store.dispatch(new tabActions.InitTabs());
     // destroy / 이런식으로 만들어 주면 될듯 하다. 아무래도 찌꺼기가 남을거 같긴 하지만
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

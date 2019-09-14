@@ -1,17 +1,19 @@
 import { Action } from '@ngrx/store';
 
 export enum TabActionTypes {
-  LoadTabs = '[Tab] Load Tabs',
+  InitTabs = '[Tab] Init Tabs',
   SetTabs = '[Tab] Set Tabs',
 }
 
-export class LoadTabs implements Action {
-  readonly type = TabActionTypes.LoadTabs;
+export class InitTabs implements Action {
+  readonly type = TabActionTypes.InitTabs;
 }
 
 export class SetTabs implements Action {
   readonly type = TabActionTypes.SetTabs;
+
+  constructor(public payload: string) {}
 }
 
 
-export type TabActions = LoadTabs;
+export type TabActions = InitTabs | SetTabs;

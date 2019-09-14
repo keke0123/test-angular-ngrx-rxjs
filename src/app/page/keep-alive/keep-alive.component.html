@@ -7,7 +7,9 @@
   </div>
   <div class="tab-container">
     <div class="tab-box">
-      <div class="tab" *ngFor="let item of tabArray">{{ item }}</div>
+      <div class="tab" *ngFor="let item of tabArray">
+        <a routerLink="./{{item}}">{{ item }}</a>
+      </div>
     </div>
     <div class="router-box">
       <router-outlet></router-outlet>

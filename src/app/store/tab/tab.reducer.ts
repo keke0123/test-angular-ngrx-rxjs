@@ -10,23 +10,33 @@ export interface State {
 }
 
 export const initialState: State = {
-  activeTab: ['input1', 'input2'],
+  activeTab: ['input1'],
   formData: {}
 };
 
 export function reducer(state = initialState, action: tabActions.TabActions): State {
   switch (action.type) {
-    case tabActions.TabActionTypes.LoadTabs:
-      return tabActive(state, action);
+    // test 용
+    case tabActions.TabActionTypes.InitTabs:
+      return initActiveTab(state);
+    case tabActions.TabActionTypes.SetTabs:
+      return addActiveTab(state, action);
     default:
       return state;
   }
 }
 
-function tabActive(state: State, action: tabActions.LoadTabs): State {
-  let array = ['input1'];
+function initActiveTab(state: State): State {
+  console.log('init tab');
   return {
     ...state,
-    activeTab: array,
+    activeTab: ['input1']
+  };
+}
+
+function addActiveTab(state: State, action: tabActions.SetTabs): State {
+  state.activeTab.unshift(action.payload);
+  return {
+    ...state,
   }
 }

@@ -18,6 +18,11 @@ const routes: Routes = [
     component: KeepAliveComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'input1',
+        pathMatch: 'full'
+      },
+      {
         path: 'input1',
         component: Input1Component,
       },
