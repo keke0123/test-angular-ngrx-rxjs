@@ -28,6 +28,8 @@ export function reducer(state = initialState, action: tabActions.TabActions): St
       return addActiveTab(state, action);
     case tabActions.TabActionTypes.SetFormData:
       return setFormData(state, action);
+    case tabActions.TabActionTypes.InitFormData:
+      return initFormData(state);
     default:
       return state;
   }
@@ -57,18 +59,6 @@ function initFormData(state: State): State {
 }
 
 function setFormData(state: State, action: tabActions.SetFormData): State {
-  // console.log('action', action);
-  // console.warn('id', action.payload['id']);
-  // console.warn('data', action.payload['data']);
-  // console.log('test',
-  //   {
-  //     ...state,
-  //     formData: {
-  //       ...state.formData,
-  //       [action.payload['id']]: action.payload['data']
-  //     }
-  //   }
-  // )
   return {
     ...state,
     formData: {

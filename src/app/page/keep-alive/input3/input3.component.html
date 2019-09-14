@@ -1,2 +1,18 @@
 <p>input3 works!</p>
-<input type="text">
+<form action="">
+  <div class="row">
+    <label for="hello">hello</label>
+    <input #input type="text" id="hello">
+  </div>
+  <div class="row">
+    <label for="world">world</label>
+    <input #input type="text" id="world">
+  </div>
+  <div class="row">
+    <select #input id="choice">
+      <option value="">값을 선택해 주세요</option>
+      <option value="hello">hello</option>
+      <option value="world">world</option>
+    </select>
+  </div>
+</form>

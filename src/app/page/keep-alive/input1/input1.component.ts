@@ -55,10 +55,7 @@ export class Input1Component implements OnInit {
   }
 
   ngOnDestroy() {
-    console.log('destroy');
-    // destroy / 이런식으로 만들어 주면 될듯 하다. 아무래도 찌꺼기가 남을거 같긴 하지만
-    // this.destroy$.next(true);
-    // this.destroy$.unsubscribe();
+    // console.log('destroy');
 
     // 종료시킬때 값을 입력한다.
     let form = {}
@@ -73,19 +70,9 @@ export class Input1Component implements OnInit {
       id: this.componentId,
       data: form
     }
-    console.log('form data', form);
+    // console.log('form data', form);
     this.store.dispatch(new tabActions.SetFormData(action));
   }
-
-  // testBtnClicked() {
-  //   this.input.forEach((val) => {
-  //     console.log(val);
-  //     console.log(val.nativeElement.id);
-  //     // 이런식으로 값을 입력시킨다.
-  //     // val.nativeElement.value = '123123';
-  //   })
-  // }
-
 }
 
 

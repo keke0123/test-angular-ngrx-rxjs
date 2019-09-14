@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'test-angular-ngrx-rxjs';
+
+  constructor(
+    private router: Router
+  ) {}
+
+  ngOnInit() {
+    // refresh 시 홈으로
+    this.router.navigate([''])
+  }
 }
