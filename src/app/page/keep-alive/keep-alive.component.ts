@@ -63,6 +63,7 @@ export class KeepAliveComponent implements OnInit {
   ngOnDestroy() {
     console.log('destroy');
     this.store.dispatch(new tabActions.InitTabs());
+    // this.store.dispatch(new tabActions)
     // destroy / 이런식으로 만들어 주면 될듯 하다. 아무래도 찌꺼기가 남을거 같긴 하지만
     this.destroy$.next(true);
     this.destroy$.unsubscribe();

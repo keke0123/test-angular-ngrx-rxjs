@@ -61,16 +61,30 @@ export class Input1Component implements OnInit {
     // this.destroy$.unsubscribe();
 
     // 종료시킬때 값을 입력한다.
+    let form = {}
+    this.input.forEach((el) => {
+      console.log(el);
+      form = {
+        ...form,
+        [el.nativeElement.id]: el.nativeElement.value,
+      }
+    });
+    let action = {
+      id: this.componentId,
+      data: form
+    }
+    console.log('form data', form);
+    this.store.dispatch(new tabActions.SetFormData(action));
   }
 
-  testBtnClicked() {
-    this.input.forEach((val) => {
-      console.log(val);
-      console.log(val.nativeElement.id);
-      // 이런식으로 값을 입력시킨다.
-      // val.nativeElement.value = '123123';
-    })
-  }
+  // testBtnClicked() {
+  //   this.input.forEach((val) => {
+  //     console.log(val);
+  //     console.log(val.nativeElement.id);
+  //     // 이런식으로 값을 입력시킨다.
+  //     // val.nativeElement.value = '123123';
+  //   })
+  // }
 
 }
 
