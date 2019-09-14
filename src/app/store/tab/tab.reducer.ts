@@ -11,7 +11,12 @@ export interface State {
 
 export const initialState: State = {
   activeTab: ['input1'],
-  formData: {}
+  formData: {
+    input1: {
+      id: 'test',
+      pwd: 'pwd',
+    }
+  }
 };
 
 export function reducer(state = initialState, action: tabActions.TabActions): State {
@@ -27,7 +32,7 @@ export function reducer(state = initialState, action: tabActions.TabActions): St
 }
 
 function initActiveTab(state: State): State {
-  console.log('init tab');
+  // console.log('init tab');
   return {
     ...state,
     activeTab: ['input1']
@@ -38,5 +43,20 @@ function addActiveTab(state: State, action: tabActions.SetTabs): State {
   state.activeTab.unshift(action.payload);
   return {
     ...state,
+  }
+}
+
+function initFormData(state: State): State {
+  // console.log('init tab');
+  return {
+    ...state,
+    formData: {}
+  };
+}
+
+function setFormData(state: State, action: tabActions.SetFormData): State {
+
+  return {
+    ...state
   }
 }

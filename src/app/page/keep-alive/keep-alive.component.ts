@@ -14,9 +14,6 @@ import * as tabActions from '../../store/tab/tab.actions';
 })
 export class KeepAliveComponent implements OnInit {
 
-  // 이런식으로 받으면 timing 이슈를 해결하기가 힘들다
-  // @ViewChildren(RouterOutlet) outlet;
-
   public urlNow: string = 'input1';
   public tabArray: Array<string> = [];
   // destroy
@@ -37,7 +34,7 @@ export class KeepAliveComponent implements OnInit {
         takeUntil(this.destroy$),
       )
       .subscribe((val) => {
-        console.log('val', val);
+        // console.log('val', val);
         this.tabArray = val;
       });
     // activeTab from store
@@ -52,11 +49,11 @@ export class KeepAliveComponent implements OnInit {
       .subscribe((val) => {
         let urlArray = val['url'].split('/');
         let url = urlArray[urlArray.length - 1];
-        console.log('url', url);
+        // console.log('url', url);
         if(this.tabArray.indexOf(url) >= 0) {
-          console.log('is be');
+          // console.log('is be');
         } else {
-          console.log('is not be');
+          // console.log('is not be');
           this.store.dispatch(new tabActions.SetTabs(url));
         }
       });
@@ -72,22 +69,19 @@ export class KeepAliveComponent implements OnInit {
   }
 
   changeTabs(tab) {
-    console.log('tab', tab);
-    // router outlet 관련
-    // console.log(this.outlet);
-    // this.outlet.forEach((val) => {
-    //   console.log(val.component);
-    //   if(val.component['input']){
-    //     val.component['input'].forEach((v) => {
-    //       console.log(v);
-    //     });
-    //   }
-    // });
+    // console.log('tab change', tab);
   }
 
-  outletInit(component) {
-    console.log('router outlet init');
-    console.log(component);
-  }
+  // outletInit(component) {
+  //   console.log('router outlet init');
+  //   console.log('component', component);
+  //   if(component) {
+  //     setTimeout(() => {
+  //       console.log(component.input);
+  //     },0)
+  //     console.log(component.input);
+  //     console.log(component.store);
+  //   }
+  // }
 
 }
