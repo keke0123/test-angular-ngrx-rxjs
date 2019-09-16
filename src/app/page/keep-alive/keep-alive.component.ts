@@ -23,7 +23,6 @@ export class KeepAliveComponent implements OnInit {
     private router: Router,
     private store: Store<fromTabStore.State>
   ) {
-
   }
 
   ngOnInit() {

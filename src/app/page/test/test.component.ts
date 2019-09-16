@@ -5,6 +5,8 @@ import * as fromExStore from '../../store/ex/reducers';
 import * as authActions from '../../store/ex/auth.actions';
 import {Observable} from 'rxjs';
 
+import {TestService} from '../../service/test/test.service';
+
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -13,9 +15,13 @@ import {Observable} from 'rxjs';
 export class TestComponent implements OnInit {
   auth$: Observable<string>;
 
+  public testService: TestService;
+
   constructor(
     private store: Store<fromExStore.State>
   ) {
+    this.testService = new TestService();
+    console.log(this.testService.initTest());
   }
 
   ngOnInit() {
