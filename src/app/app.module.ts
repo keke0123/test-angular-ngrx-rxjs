@@ -12,6 +12,8 @@ import { StoreModule } from '@ngrx/store';
 import * as fromExStore from './store/ex/reducers';
 import { MainComponent } from './page/main/main.component';
 import * as fromTabStore from './store/tab/reducers';
+import { AuthComponent } from './page/auth/auth.component';
+import { Auth1Component } from './page/auth/auth1/auth1.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import * as fromTabStore from './store/tab/reducers';
     Input1Component,
     Input2Component,
     Input3Component,
-    MainComponent
+    MainComponent,
+    AuthComponent,
+    Auth1Component,
   ],
   imports: [
     BrowserModule,

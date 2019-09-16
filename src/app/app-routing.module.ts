@@ -6,6 +6,9 @@ import {Input1Component} from './page/keep-alive/input1/input1.component';
 import {Input2Component} from './page/keep-alive/input2/input2.component';
 import {Input3Component} from './page/keep-alive/input3/input3.component';
 import {MainComponent} from './page/main/main.component';
+import {AuthComponent} from './page/auth/auth.component';
+import {TestGuard} from './guard/test/test.guard';
+import {Auth1Component} from './page/auth/auth1/auth1.component';
 
 
 const routes: Routes = [
@@ -39,6 +42,18 @@ const routes: Routes = [
   {
     path: 'main',
     component: MainComponent,
+  },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    canActivate: [TestGuard],
+    canActivateChild: [TestGuard],
+    children: [
+      {
+        path: 'auth1',
+        component: Auth1Component
+      }
+    ]
   }
 ];
 
