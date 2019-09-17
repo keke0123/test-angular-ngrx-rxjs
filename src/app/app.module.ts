@@ -15,9 +15,10 @@ import * as fromTabStore from './store/tab/reducers';
 import { AuthComponent } from './page/auth/auth.component';
 import { Auth1Component } from './page/auth/auth1/auth1.component';
 import { HttpComponent } from './page/http/http.component';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
 import { TestEffectEffects } from './effects/test/test-effect.effects';
+import {TestService} from './service/interceptor/test/test.service';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,13 @@ import { TestEffectEffects } from './effects/test/test-effect.effects';
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([TestEffectEffects]),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TestService,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
