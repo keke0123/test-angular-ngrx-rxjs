@@ -14,10 +14,13 @@ export class HttpComponent implements OnInit {
 
   ngOnInit() {
     let test = this.http.get('http://54.180.32.46/cors');
-    test.toPromise()
-      .then((val) => {
-        console.log(val);
-      });
+    test.subscribe((val) => {
+      console.log(val);
+    });
+    // test.toPromise()
+    //   .then((val) => {
+    //     console.log(val);
+    //   });
   }
 
 }
