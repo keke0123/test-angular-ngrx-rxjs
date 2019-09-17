@@ -14,6 +14,8 @@ import { MainComponent } from './page/main/main.component';
 import * as fromTabStore from './store/tab/reducers';
 import { AuthComponent } from './page/auth/auth.component';
 import { Auth1Component } from './page/auth/auth1/auth1.component';
+import { HttpComponent } from './page/http/http.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { Auth1Component } from './page/auth/auth1/auth1.component';
     MainComponent,
     AuthComponent,
     Auth1Component,
+    HttpComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,6 +36,7 @@ import { Auth1Component } from './page/auth/auth1/auth1.component';
     StoreModule.forRoot({}), // root 는 하나 들어가야 에러가 안남, 아님 forfeature 대신 root 로 선언
     StoreModule.forFeature(fromExStore.exStoreFeatureKey, fromExStore.reducers, { metaReducers: fromExStore.metaReducers }),
     StoreModule.forFeature(fromTabStore.tabStoreFeatureKey, fromTabStore.reducers, { metaReducers: fromTabStore.metaReducers }),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

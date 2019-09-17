@@ -9,6 +9,7 @@ import {MainComponent} from './page/main/main.component';
 import {AuthComponent} from './page/auth/auth.component';
 import {TestGuard} from './guard/test/test.guard';
 import {Auth1Component} from './page/auth/auth1/auth1.component';
+import {HttpComponent} from './page/http/http.component';
 
 
 const routes: Routes = [
@@ -54,6 +55,10 @@ const routes: Routes = [
         component: Auth1Component
       }
     ]
+  },
+  {
+    path: 'http',
+    component: HttpComponent,
   }
 ];
 
