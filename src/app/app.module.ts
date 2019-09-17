@@ -16,6 +16,8 @@ import { AuthComponent } from './page/auth/auth.component';
 import { Auth1Component } from './page/auth/auth1/auth1.component';
 import { HttpComponent } from './page/http/http.component';
 import {HttpClientModule} from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { TestEffectEffects } from './effects/test/test-effect.effects';
 
 @NgModule({
   declarations: [
@@ -37,6 +39,8 @@ import {HttpClientModule} from '@angular/common/http';
     StoreModule.forFeature(fromExStore.exStoreFeatureKey, fromExStore.reducers, { metaReducers: fromExStore.metaReducers }),
     StoreModule.forFeature(fromTabStore.tabStoreFeatureKey, fromTabStore.reducers, { metaReducers: fromTabStore.metaReducers }),
     HttpClientModule,
+    EffectsModule.forRoot([]),
+    EffectsModule.forFeature([TestEffectEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

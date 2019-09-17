@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TestApiService} from '../../service/api/testApi/test-api.service';
 
+import {Store} from '@ngrx/store';
+import * as fromExStore from '../../store/ex/reducers';
+import * as authActions from '../../store/ex/auth.actions';
+
 @Component({
   selector: 'app-http',
   templateUrl: './http.component.html',
@@ -13,6 +17,7 @@ export class HttpComponent implements OnInit {
 
   constructor(
     private http: HttpClient,
+    private store: Store<fromExStore.State>
   ) { }
 
   ngOnInit() {
@@ -35,5 +40,14 @@ export class HttpComponent implements OnInit {
     temp.subscribe((res) => {
       console.log(res);
     })
+  }
+
+  testEffect() {
+    this.store.dispatch(new authActions.LoadAuths());
+    // this.store.select(fromExStore.exStoreFeatureKey, 'auth', 'userName')
+    //   .subscribe((val) => {
+    //     console.log('select userName');
+    //     console.log(val);
+    //   });
   }
 }
