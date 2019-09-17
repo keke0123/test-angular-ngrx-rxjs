@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {TestApiService} from '../../service/api/testApi/test-api.service';
 
 @Component({
   selector: 'app-http',
@@ -8,8 +9,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HttpComponent implements OnInit {
 
+  public apiService: TestApiService;
+
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
   ) { }
 
   ngOnInit() {
@@ -21,6 +24,16 @@ export class HttpComponent implements OnInit {
     //   .then((val) => {
     //     console.log(val);
     //   });
+
+    //
+    this.apiService = new TestApiService(this.http);
   }
 
+  testApi() {
+    console.log('service call');
+    let temp = this.apiService.getTest();
+    temp.subscribe((res) => {
+      console.log(res);
+    })
+  }
 }
